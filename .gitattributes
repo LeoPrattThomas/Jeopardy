@@ -1,11 +1,10 @@
-# Auto detect text files and perform LF normalization
-* text=auto
 
+#basic hide
 Hidden
 
 #R project 
-*.Rhistory
-*.Rproj.user
+.Rhistory
+.Rproj.user
 
 # Python # 
 *.py[cod] 
