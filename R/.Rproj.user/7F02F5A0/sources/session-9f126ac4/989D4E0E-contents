@@ -1,0 +1,59 @@
+#catigtorical data
+library(tidyverse)
+library(modelr)
+
+ggplot(sim2) + 
+  geom_point(aes(x,y))
+
+sim2_mod <- lm(y~x, data = sim2)
+
+#grad the explanitory
+grid <- sim2 %>% 
+  data_grid(x)
+View(grid)
+
+#add the perdiecitonls
+grid <- grid %>% 
+  add_predictions(sim2_mod)
+View(grid)
+
+#plot the beueefull data
+ggplot(sim2, aes(x)) +
+  geom_point(aes(y = y)) + 
+  geom_point(data = grid,
+             aes(y = pred), color = "blue", size = 5)
+
+
+#c adiucorical and continiues
+sim3 
+ggplot(sim3, aes(x1, y)) +
+  geom_point(aes(color = x2))
+
+
+#two possibel modles
+
+m1 <- lm(y~x1+x2, data = sim3)
+m2 <- lm(y~x1*x2, data = sim3)
+#+: modle will estmate chec effect indoment of alk the others
+#+: modle will inels tyhe inrteatina and thbe ineral of the compoments
+
+
+#visualing the models
+#* data frid notehr bvirbales
+#* gather perdicitons()
+grid <- sim3 %>% data_grid(x1,x2) %>% 
+  gather_predictions(m1,m2)
+view(grid)
+
+ggplot(sim3, aes(x1, y, color = x2)) + 
+  geom_point() +
+  geom_line(data = grid, aes(y = pred)) +
+  facet_wrap(~model)
+
+#make the residuals
+sim3 <- sim3 %>% 
+  gather_residuals(m1,m2)
+
+ggplot(sim3, aes(x1, resid, color = x2)) + 
+  geom_point() + 
+  facet_grid(model ~ x2)

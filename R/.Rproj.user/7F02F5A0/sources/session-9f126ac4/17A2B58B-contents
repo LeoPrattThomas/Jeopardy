@@ -1,0 +1,51 @@
+#plot perdic tions and liner model 
+#plot log bae
+library(tidyverse)
+library(modelr)
+
+#import aligartor
+alligator <- read.delim("~/My Drive/*Data Science 2022-23/Files/alligator.txt")
+View(alligator)
+
+ggplot(alligator)+
+  geom_point(aes(length_inches, weight_pounds))
+
+
+a_mod <- lm(weight_pounds ~ length_inches, data = alligator)
+
+coef(a_mod)#get the coeffisionts
+"""
+  (Intercept) weight_pounds 
+   69.6323670     0.1416602 
+"""
+
+#these lines are realy important
+grid <- alligator %>% 
+  data_grid(length_inches) %>% 
+  add_predictions(a_mod)
+
+
+ggplot(alligator, aes(length_inches))+
+  geom_point(aes(y = weight_pounds))+
+  geom_line(aes(y = pred), data = grid, color = "green", size = 1)
+
+
+
+gator_1 <- alligator %>% mutate(log_length = log(length_inches),
+                                log_weight = log(weight_pounds))
+view(gator_1)
+
+
+exp_mod <- lm(log_weight ~ length_inches, data = gator_1)
+coef(exp_mod)
+
+grid <- grid %>% add_predictions(exp_mod)
+
+ggplot(gator_1, aes(length_inches)) +
+  geom_point(aes(y = log_weight)) +
+  geom_line(aes(y = pred), data = grid, color = "green", size = 1)
+
+gator_1 <- gator_1 %>% add_residuals(exp_mod)
+
+ggplot(data = gator_1, aes(length_inches, resid)) +
+  geom_point()

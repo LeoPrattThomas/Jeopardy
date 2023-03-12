@@ -1,0 +1,39 @@
+{% extends 'jeopardy/base.html' %}
+
+{% block content %}
+<div class="card mt-5">
+  <div class="table-responsive">
+    <table class="table table-striped-columns">
+      <thead>
+        <tr>
+          {% for topic in topics %}
+          <th scope="col" style="width: 12rem;"><p class = "text-center">{{topic}}<p></th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for points in questions %}
+        <tr class="">
+          {% for question in points %}
+          <td class = "text-center">
+            <a href="#" class="btn btn-outline-secondary btn-lg">{{question.points}}</a>
+            {% comment %}{{question.points}}
+            <div class="card align-middle" style="width: 12rem;">
+              <div class="card-body">
+                <h4 class="card-title text-center"></h4>
+              </div>
+            </div>
+            {% endcomment %}
+          </td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+{% endblock content %}

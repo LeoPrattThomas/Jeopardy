@@ -1,0 +1,75 @@
+#exasised for parcting lineaer modling with real data
+"""
+y^ = 2.05x = 4.22
+e = y - y^
+"""
+library(tidyverse)
+library(modelr)
+
+#LSRL - linerar only
+sim1_mod <- lm(y ~ x , data = sim1)
+
+#start wiht a grid of values
+grid <- sim1 %>%  data_grid(x)
+
+#add percddicitons
+grid <- grid %>%  add_predictions(sim1_mod)
+
+
+
+#plor perdikotoins
+ggplot(sim1, aes(x)) + 
+  geom_point(aes(y = y)) +
+  geom_line(aes(y = pred), data = grid, color = "red", size = 1)
+
+
+#     visualizing predictions form a model. (the long way)
+
+#add residuals to data
+sim1 <- sim1 %>% add_residuals(sim1_mod)
+
+#plot residuals  (should not have a pattern)
+ggplot(sim1, aes(x,resid)) +
+  geom_ref_line(h = 0) + 
+  geom_point()
+
+
+
+#====================== make mpg data ======================
+
+#cty vs. hwy
+ggplot(mpg, aes(hwy, cty)) + 
+  geom_point()
+
+#LSRL - linerar only
+mpg_mod <- lm(cty ~ hwy , data = mpg)
+
+#start wiht a grid of values
+grid <- mpg %>%  data_grid(hwy)
+
+#add percddicitons
+grid <- grid %>%  add_predictions(mpg_mod)
+
+
+
+#plor perdikotoins
+ggplot(mpg, aes(hwy)) + 
+  geom_point(aes(y = cty)) +
+  geom_line(aes(y = pred), data = grid, color = "red", size = 1)
+
+
+
+
+#add residuals to data
+mpg <- mpg %>% add_residuals(mpg_mod)
+
+#plot residuals  (should not have a pattern, good resid)
+ggplot(mpg, aes(hwy,resid)) +
+  geom_ref_line(h = 0) + 
+  geom_point()
+
+#====================== end mpg data ======================
+
+
+
+

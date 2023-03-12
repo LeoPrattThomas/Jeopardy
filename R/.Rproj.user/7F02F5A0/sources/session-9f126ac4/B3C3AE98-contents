@@ -1,0 +1,28 @@
+library(readxl)
+library(tidyverse)
+Question <- read_excel("Jeopardy.xlsx")
+Answer <- read_excel("Jeopardy.xlsx",sheet = "answers")
+
+#make tible of qustion tidy
+Question_tidy <- Question %>% 
+  pivot_longer(cols = c("Short answer","Fill in the blank","Factual questions", "Disability/accessibility knowledge"), 
+               names_to = "Topic",
+               values_to = "Question") %>% 
+  rename(Points = QUESTIONS)#;View(Question_tidy)
+
+#make tible of answer tidy
+Answer_tidy <- Answer %>% 
+  pivot_longer(cols = c("Short answer","Fill in the blank","Factual questions", "Disability/accessibility knowledge"), 
+               names_to = "Topic",
+               values_to = "Answer") %>% 
+  rename(Points = ANSWERS)#;View(Answer_tidy)
+
+#combine two tables to make it more superior
+Jeopardy <- merge(Question_tidy, Answer_tidy, by = c("Topic", "Points")); View(Jeopardy)
+
+Topic <- as_tibble(
+  cbind(names = names(Question))) %>% 
+  filter(names != "QUESTIONS");#View(Topic)
+
+write.csv(Jeopardy, "datasets/Jeopardy.csv")
+write.csv(Topic, "datasets/Topic.csv")

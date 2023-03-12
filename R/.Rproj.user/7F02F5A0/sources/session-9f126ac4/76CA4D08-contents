@@ -1,0 +1,37 @@
+#genreating modles part 1
+library(tidyverse)
+library(modelr)
+
+models <- tibble(
+  a1 = runif(250,-20,40),
+  a2 = runif(250,-20,40),
+)
+
+
+ggplot(sim1, aes(x,y)) +
+  geom_abline(aes(intercept = a1, slope = a2),
+              data = models, 
+              alpha = 1/4)+
+  geom_point()
+
+sim1_mod <- lm(y ~ x , data = sim1)
+coef(sim1_mod)
+
+summary(sim1_mod)
+y = a1*x+a2
+
+
+"""
+y = a1*x+a2
+1. direction 
+2. form 
+3. strength
+4. unisial values
+
+on average for every 1 unit incres in z,  we perdiknd 2.05 incrence in y
+
+a_1 = 2.05
+a_2 = 4.22
+
+y = 2.05x + 4.22
+"""
