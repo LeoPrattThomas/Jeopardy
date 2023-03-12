@@ -1,24 +1,2 @@
-
-#basic hide
-Hidden
-
-#R project 
-.Rhistory
-.Rproj.user
-
-# Python # 
-*.py[cod] 
-*$py.class 
-
-# Django #
-*.log
-*.pot
-*.pyc
-__pycache__
-db.sqlite3
-static
-media
-/*.jpg
-/*.png
-dump.json
-
+# Auto detect text files and perform LF normalization
+* text=auto
