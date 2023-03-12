@@ -16,14 +16,12 @@
         <tr class="">
           {% for question in points %}
           <td class = "text-center">
-            <a href="#" class="btn btn-outline-secondary btn-lg">{{question.points}}</a>
-            {% comment %}{{question.points}}
-            <div class="card align-middle" style="width: 12rem;">
-              <div class="card-body">
-                <h4 class="card-title text-center"></h4>
-              </div>
-            </div>
-            {% endcomment %}
+            {% if question.team_set.all.count == 0 %}
+            <a href="question/{{question.id}}" class="btn btn-outline-secondary btn-lg">{{question.points}} </a>
+            {% else %} 
+            <a href="question/{{question.id}}" class="btn btn-outline-secondary btn-lg disabled">{{question.points}}</a><br>
+            {% for team in question.team_set.all %}{{team}} {% endfor %}
+            {% endif %}
           </td>
           {% endfor %}
         </tr>

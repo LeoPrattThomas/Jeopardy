@@ -18,9 +18,13 @@ class Question(models.Model):
     question = models.TextField(max_length=255)
     answer = models.TextField(max_length=255)
     def __str__(self):
-        return f"'{ str(self.topic) }' for { str(self.points) } points"
+        return f"{ str(self.topic) } for { str(self.points) } points"
 
 class Team(models.Model):
-    team_Name = models.TextField(max_length=255)
-    score = models.IntegerField()
+    teamName = models.CharField(max_length=50, )
+    qustionsAnsered = models.ManyToManyField(Question,blank=True)
+
+    def __str__(self):
+        return self.teamName
+
     #is_turn = models.BooleanField()

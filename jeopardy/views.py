@@ -1,13 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from django.http import HttpResponse
-from http.client import HTTPResponse
 from django.shortcuts import render
-import pandas as pd
-import os
-from django.core.files.storage import FileSystemStorage
-from tablib import Dataset
-import numpy as np
 
 # Create your views here.
 def main_page(request):
@@ -30,6 +24,13 @@ def main_page(request):
 
     context = {"questions": questions_parced, "topics": topics}
     return render(request, 'jeopardy/jeopardy.html', context)
+
+def question(request, question_id):
+    question = Question.objects.get(id = question_id)
+    return render(request, 'jeopardy/question.html', {"question": question})
+
+
+
         
 
     

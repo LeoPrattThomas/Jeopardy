@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.urls import include, path
 from .views import *
 from django.urls import path
-from . import views  
 from config import settings
 from django.conf.urls.static import static
 
@@ -12,6 +11,7 @@ urlpatterns = [
 
 
 urlpatterns =[
-    path("",main_page, name='home'),
+    path("",main_page, name='main'),
+    path("question/<int:question_id>", question, name="question")
 ] 
 #urlpatterns.extend(TestForm.as_urls())
