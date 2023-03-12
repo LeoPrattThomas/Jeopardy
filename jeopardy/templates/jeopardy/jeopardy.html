@@ -2,7 +2,12 @@
 
 {% block content %}
 <h1 class = "text-center mt-3">Jeopardy!!</h1>
-<a class="btn btn-secondary" href="/admin">Settings</a>
+<div class="card mt-3" style = "width: 18rem;">
+  <div class="card-body">
+    <h4 class="card-title pink1" style = "color: {{activeTeam.color}};">{{activeTeam}} Turn </h4>
+  </div>
+</div>
+<p ></p>
 <div class="card mt-5">
   <div class="table-responsive">
     <table class="table table-striped-columns">
@@ -18,11 +23,11 @@
         <tr class="">
           {% for question in points %}
           <td class = "text-center">
-            {% if question.team_set.all.count == 0 %}
-            <a href="question/{{question.id}}" class="btn btn-outline-secondary btn-lg">{{question.points}} </a>
+            {% if question.incorect.all.count != 0 or question.correct.all.count != 0 %}
+            <a href="#" class="btn btn-outline-secondary btn-lg disabled">{{question.points}} </a>
             {% else %} 
-            <a href="question/{{question.id}}" class="btn btn-outline-secondary btn-lg disabled">{{question.points}}</a><br>
-            {% for team in question.team_set.all %}{{team}} {% endfor %}
+            <a href="/question/{{question.id}}/{{team_id}}" class="btn btn-outline-secondary btn-lg">{{question.points}}</a><br>
+            {#{% for team in question.team_set.all %}{{team}} {% endfor %}#}
             {% endif %}
           </td>
           {% endfor %}
@@ -33,6 +38,18 @@
   </div>
 </div>
 
+<div class="card mt-4">
+  <div class="card-header">
+    <h4 class="card-title">Score</h4>
+  </div>
+  
+  <ul class="list-group list-group-flush">
+    {% for team in teams %}
+    <li class="list-group-item">{{team.0}} : {{team.1}}</li>
+    {% endfor %}
+  </ul>
+</div>
+<a class="btn btn-secondary" href="/admin">Settings</a>
 
 
 

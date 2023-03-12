@@ -1,4 +1,5 @@
 from django.db import models
+from colorfield.fields import ColorField
 
 # Create your models here.
 
@@ -22,7 +23,8 @@ class Question(models.Model):
 
 class Team(models.Model):
     teamName = models.CharField(max_length=50)
-    qustionsAnsered = models.ManyToManyField(Question,blank=True)
+    correct = models.ManyToManyField(Question,blank=True, related_name="correct")
+    incorrect = models.ManyToManyField(Question,blank=True, related_name="incorect")
     def __str__(self):
         return self.teamName
-    is_turn = models.BooleanField(default=False)
+    color = ColorField(default='#FF0000')

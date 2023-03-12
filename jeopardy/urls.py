@@ -12,6 +12,7 @@ urlpatterns = [
 
 urlpatterns =[
     path("",main_page, name='main'),
-    path("question/<int:question_id>", question, name="question")
+    path("board/<int:team_id>", board, name= "board"),
+    path("question/<int:question_id>/<int:team_id>", question, name="question"),
 ] 
 #urlpatterns.extend(TestForm.as_urls())

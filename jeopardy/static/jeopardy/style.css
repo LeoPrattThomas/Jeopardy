@@ -2,10 +2,15 @@
     background-color:blue;
 }
 .body {
-    
-
     background: url("Top.png") top no-repeat, url("Bottom.png") bottom no-repeat;
     background-size: 100%, 100%;
     background-color: #F1B2D3;
 }
 
+.pink1 {
+    background-color: #F1B2D3, 
+}
+
+.pink2 {
+    background-color: #F00000
+}
