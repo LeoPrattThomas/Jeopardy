@@ -2,7 +2,19 @@
     background-color:blue;
 }
 .body {
+    
+
+    background: url("Top.png") top no-repeat, url("Bottom.png") bottom no-repeat;
+    background-size: 100%, 100%;
     background-color: #F1B2D3;
-    background-image: url("images/sunset.png");
+    
+    /*background-image: url("Top.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+    background-image: url("Bottom.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 50%;*/
 }
 
