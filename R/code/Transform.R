@@ -8,14 +8,14 @@ Question_tidy <- Question %>%
   pivot_longer(cols = c("Short answer","Fill in the blank","Factual questions", "Disability/accessibility knowledge"), 
                names_to = "Topic",
                values_to = "Question") %>% 
-  rename(Points = QUESTIONS)#;View(Question_tidy)
+  rename(Points = QUESTIONS);View(Question_tidy)
 
 #make tible of answer tidy
 Answer_tidy <- Answer %>% 
   pivot_longer(cols = c("Short answer","Fill in the blank","Factual questions", "Disability/accessibility knowledge"), 
                names_to = "Topic",
                values_to = "Answer") %>% 
-  rename(Points = ANSWERS)#;View(Answer_tidy)
+  rename(Points = ANSWERS);View(Answer_tidy)
 
 #combine two tables to make it more superior
 Jeopardy <- merge(Question_tidy, Answer_tidy, by = c("Topic", "Points")); View(Jeopardy)
