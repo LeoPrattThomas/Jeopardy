@@ -29,7 +29,7 @@ assets
 *.pyc
 __pycache__
 db.sqlite3
-static
+#static
 media
 dump.json
 
