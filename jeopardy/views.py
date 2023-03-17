@@ -64,15 +64,15 @@ def question(request, question_id, team_id):
     #edit user form
     team_obj = get_object_or_404(Team, id = team_id) # fetch the object related to passed id
     
-    teamForm = TeamForm(request.POST or None, instance = team_obj, question_id = question_id)  # pass the object as instance in form
+    teamForm = TeamForm(request.POST or None, initial = {team.correct.all()}, instance = team_obj, question_id = question_id)  # pass the object as instance in form
     if teamForm.is_valid():# save the data from the form
         
 
-        correct = teamForm.cleaned_data.get("correct")
+        """correct = teamForm.cleaned_data.get("correct")
         full_correct = team.correct.all()
 
         print("Current data: %s" % list(chain(full_correct,correct)))
-        teamForm.cleaned_data["correct"] = list(chain(team.incorrect,incorrect))
+        teamForm.cleaned_data["correct"] = list(chain(team.incorrect,correct))"""
 
         if teamForm.has_changed():
             print("The following fields changed: %s" % ", ".join(teamForm.changed_data))
