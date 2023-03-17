@@ -47,7 +47,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
-You should have received a <a href = "LICENSE"> copy of the GNU General Public License </a>
+You should have received a copy of the <a href = "LICENSE">GNU General Public License </a>
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
