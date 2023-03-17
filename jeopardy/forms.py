@@ -23,3 +23,8 @@ class TeamForm(forms.ModelForm):
     class Meta:
         model = Team
         fields = ["correct", "incorrect"]
+
+class TeamForm2(forms.ModelForm):
+    class Meta:
+        model = Team
+        fields = ["teamName","correct", "incorrect","color"]

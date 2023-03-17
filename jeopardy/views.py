@@ -1,3 +1,9 @@
+'''
+Copyright (C) 2023 Leo Pratt-Thomas
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
+'''
 from .models import *
 from .forms import *
 import random
@@ -72,29 +78,34 @@ def question(request, question_id, team_id):
         teamForm.save()
 
         #chanage active tean
-        team_id = team.id
-        team_id += 1
-
-        while True:
-            try:
-                team = Team.objects.get(id = team_id) 
-                break
-            except ObjectDoesNotExist:   
-                team_id =+ 1
-                if team_id > 99:
-                    team_id = 0
-                print(team_id)
-                
-            
-    
+        team_id = next_team(team.id)
+        
         print(Team.objects.get(id = team_id))
         return redirect(f"/board/{ team_id }")
     context["teamForm"] = teamForm # add form dictionary to context
 
     return render(request, 'jeopardy/question.html', context)
 
+def next_team(team_id):
+    team_id += 1
+    while True:
+        try:
+            team = Team.objects.get(id = team_id) 
+            break
+        except ObjectDoesNotExist:   
+            team_id =+ 1
+            if team_id > 99:
+                team_id = 0
+    return team_id
+        
 
-
+def edit_team(request,team_id):
+    team_obj = get_object_or_404(Team, id = team_id)
+    teamForm = TeamForm2(request.POST or None, instance = team_obj)
+    if teamForm.is_valid():
+        teamForm.save()
+        return redirect(f"/board/{ team_id }")
+    return render(request, 'jeopardy/editTeam.html', {"teamForm":teamForm, "team_id":team_id})
         
 
     

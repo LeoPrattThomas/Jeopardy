@@ -9,7 +9,8 @@ yes i wrote all of this just for the game using:
 I did write all of this so i am not completely incompetent.
 
 but if you are reading this just for fun or i showed it to you and you are a part of UChicago Lab School and not a part of SDA JOIN!!! We do cool things. 
-And yet somehow I'm stuck with writing code at 1:47 am in the morning. I need friends.
+And yet somehow I'm stuck with writing code at 1:47 am in the morning. I need friends
+It took over 2 days of code, i spent a lot of time gettign this to work, django is not a game dev platform, but im  not rewriting it and it works so yeah!
 
 ### Downloading a repository
 
