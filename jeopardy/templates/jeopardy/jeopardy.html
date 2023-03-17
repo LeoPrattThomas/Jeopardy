@@ -49,7 +49,7 @@
           {% for question in points %}
           <td class = "text-center">
             {#btn btn-outline-secondary btn-lg #}
-            {% if question.incorect.all.count != 0 or question.correct.all.count != 0 %}
+            {% if question.incorrect.all.count != 0 or question.correct.all.count != 0 %}
             <p class="mb-0 pink_disabled">{{question.points}}</p>
             {% else %} 
             <a href="/question/{{question.id}}/{{team_id}}" style = "color: {{question.color}}">{{question.points}}</a><br>

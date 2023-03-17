@@ -19,6 +19,8 @@ class Question(models.Model):
     question = models.TextField(max_length=255)
     color = ColorField(default='#EC008C')
     answer = models.TextField(max_length=255)
+    def str(self):
+        return f"{ str(self.topic) } for { str(self.points) } points"# : {self.question}"
     def __str__(self):
         return f"{ str(self.topic) } for { str(self.points) } points"# : {self.question}" 
 

@@ -27,35 +27,33 @@
                     <div class="card-body">
                         <h4 class="card-text">Correct Answer: {{question.answer}}</h4>
                         <br>
-                        {{profileForm.as_p}}
                         {% csrf_token %}
-                        <input class="btn btn-success" type="submit" value="Correct">
-                        <input class="btn btn-danger" type="submit" value="Incorrect"><br>
+
+                        {% for option in teamForm.correct %}{% if option.choice_label == question.str %}
+                        <div class="form-check">
+                            {{ option.tag }}
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Correct
+                            </label> 
+                        </div>
+                        {{option.errors}}
+                        {% endif %}{% endfor %}
+
+                        {% for option in teamForm.incorrect %}{% if option.choice_label == question.str %}
+                        <div class="form-check">
+                            {{ option.tag }}
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Incorrect
+                            </label> 
+                        </div>
+                        {{option.errors}}
+                        {% endif %}{% endfor %}
+                        {#{% endcomment %}#}
+                        <input class="btn btn-primary" type="submit" value="Next Question"><br>
                     </div>
                     
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="card mt-4">
-        <div class="card-header">
-            Form info
-        </div>
-        <div class="card-body">
-            {{teamForm.as_p}}
-            {% regroup field by attrs.cat_name as list %}
-
-            <ul>
-                {% for el in list %}
-                    <li>{{el.grouper}}
-                    <ul>
-                        {% for e in el.list %}
-                            {{e}} <br />
-                        {% endfor %}
-                    </ul>
-                    </li>
-                {% endfor %}
-            </ul>
         </div>
     </div>
 </form> 
