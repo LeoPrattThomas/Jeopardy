@@ -7,6 +7,9 @@ path = "R/code/Transform.R"
 os.chmod(path, 0b111101101)
 res = subprocess.call(f"Rscript {path}", shell=True)
 
+#if R does not run hult program
+if res != 0:
+    sys.exit(res)
 
 #Import into database
 import R.code.import_topic

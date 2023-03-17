@@ -13,7 +13,8 @@ for row in freader:
     question = Question(topic = topic, 
                         points = points, 
                         question = row[3], 
-                        answer = row[4], 
+                        answer = row[4],
+                        color = row[5], 
                         id = int(row[0]))
     print(question)
     question.save()

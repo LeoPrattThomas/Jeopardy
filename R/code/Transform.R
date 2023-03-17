@@ -3,30 +3,38 @@
 library("readxl")
 library("tidyverse")
 
-question <- read_excel("R/datasets/Jeopardy.xlsx")
+question <- read_excel("R/datasets/Jeopardy.xlsx",sheet = "qustions")
 print("Question Imported: R/datasets/Jeopardy.xlsx")
+
 answer <- read_excel("R/datasets/Jeopardy.xlsx",sheet = "answers")
 print("Answer Imported: R/datasets/Jeopardy.xlsx")
 
+color <- read_excel("R/datasets/Jeopardy.xlsx",sheet = "hex")
+print("color Imported: R/datasets/Jeopardy.xlsx")
 
 #make tible of qustion tidy
 question_tidy <- question %>% 
   pivot_longer(cols = c("Short answer","Fill in the blank","Factual questions", "Disability/accessibility knowledge"),  # nolint
                names_to = "Topic",
-               values_to = "question") %>% 
+               values_to = "Question") %>% 
   rename(Points = QUESTIONS)#; View(question_tidy)
 
 #make tible of answer tidy
 answer_tidy <- answer %>% 
   pivot_longer(cols = c("Short answer","Fill in the blank","Factual questions", "Disability/accessibility knowledge"),  # nolint: line_length_linter.
                names_to = "Topic",
-               values_to = "answer") %>% 
+               values_to = "Answer") %>% 
   rename(Points = ANSWERS)#; View(answer_tidy)
 
-
+color_tidy <- color %>% 
+  pivot_longer(cols = c("Short answer","Fill in the blank","Factual questions", "Disability/accessibility knowledge"),  # nolint
+               names_to = "Topic",
+               values_to = "Color") %>% 
+  rename(Points = HEX)#; View(color_tidy)
 
 #combine two tables to make it more superior
-jeopardy <- merge(question_tidy, answer_tidy, by = c("Topic", "Points"))#; View(Jeopardy)
+jeopardy <- merge(question_tidy, answer_tidy, by = c("Topic", "Points"))
+jeopardy <- merge(jeopardy,color_tidy, by = c("Topic", "Points"))#; View(jeopardy)
 
 #get each topic and point value
 topic <- tibble(unique(jeopardy$Topic)) %>% 
