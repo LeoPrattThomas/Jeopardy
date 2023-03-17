@@ -6,7 +6,7 @@ yes i wrote all of this jsut for the game using:
     Python
     SQL
     Django
-Also if Tea calls me incompitent (shes probaly right) but i wrote this so i big brain sometimes
+i did write all of this so i am not completely incompetent
 
 but if you are reading this jsut for fun or i showwed it to you and you are a part of UChicago Lab School and not a part of SDA JOIN!!! We do cool things. 
 And yet somehow im stuck wiht righting coede at 1:47 am in the morning, i need friends.
