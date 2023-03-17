@@ -1,7 +1,9 @@
 from .models import *
+from .forms import *
 import random
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from itertools import chain
+from django.shortcuts import render, redirect, get_object_or_404
 
     
 
@@ -34,7 +36,6 @@ def board(request,team_id):
     for team in teams:
         score = 0
         for qusiton in team.correct.all():
-            print()
             score += int(qusiton.points.points)
         teams_with_total.append((team,score))
 
@@ -50,8 +51,43 @@ def board(request,team_id):
     return render(request, 'jeopardy/jeopardy.html', context)
 
 def question(request, question_id, team_id):
+    context ={}
+
+    context["url"] = (question_id,team_id)
+
+    team = Team.objects.get(id = team_id)
+    context["team"] = team
+
     question = Question.objects.get(id = question_id)
-    return render(request, 'jeopardy/question.html', {"question": question})
+    context["question"] = question
+
+    #edit user form
+    team_obj = get_object_or_404(Team, id = team_id) # fetch the object related to passed id
+    
+    teamForm = TeamForm(request.POST or None, instance = team_obj, question_id = question_id)  # pass the object as instance in form
+    if teamForm.is_valid():# save the data from the form
+        
+
+        correct = teamForm.cleaned_data.get("correct")
+        full_correct = team.correct.all()
+
+        print("Current data: %s" % list(chain(full_correct,correct)))
+        teamForm.cleaned_data["correct"] = list(chain(team.incorrect,incorrect))
+
+        if teamForm.has_changed():
+            print("The following fields changed: %s" % ", ".join(teamForm.changed_data))
+
+        teamForm.save()
+
+        #chanage active tean
+        while Team.objects.get == None:
+            team_id =+ 1
+            if team_id < 99:
+                team_id = 0
+        return redirect(f"/board/{ team.id }")
+    context["teamForm"] = teamForm # add form dictionary to context
+
+    return render(request, 'jeopardy/question.html', context)
 
 
 

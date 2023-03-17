@@ -2,16 +2,41 @@
 
 {% block content %}
 <h1 class = "text-center mt-3">Jeopardy!!</h1>
-<div class="card mt-3" style = "width: 18rem;">
-  <div class="card-body">
-    <h4 class="card-title pink1" style = "color: {{activeTeam.color}};">{{activeTeam}} Turn </h4>
+
+<!--team part-->
+<div class="row justify-content-center align-items-center g-2">
+
+  <!--keep track of whos turn it is-->
+  <div class="col">
+    <div class="card mt-3" style = "width: 18rem;">
+      <div class="card-body">
+        <h4 class="card-title text-center" style = "color: {{activeTeam.color}};">{{activeTeam}} Turn </h4>
+      </div>
+    </div>
+  </div>
+
+  <!--keep track of score of each team-->
+  <div class="col">
+    <div class="card mt-4">
+      <div class="card-header">
+        <h4 class="card-title text-center">Teams Scores</h4>
+      </div>
+      
+      <ul class="list-group list-group-flush">
+        {% for team in teams %}
+        <li class="list-group-item">{{team.0}} : {{team.1}}</li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
 </div>
-<p ></p>
+
+
+<!--main board-->
 <div class="card mt-5">
   <div class="table-responsive">
-    <table class="table table-striped-columns">
-      <thead>
+    <table class="table">
+      <thead class="table-light">
         <tr>
           {% for topic in topics %}
           <th scope="col" style="width: 12rem;"><p class = "text-center">{{topic}}<p></th>
@@ -23,10 +48,11 @@
         <tr class="">
           {% for question in points %}
           <td class = "text-center">
+            {#btn btn-outline-secondary btn-lg #}
             {% if question.incorect.all.count != 0 or question.correct.all.count != 0 %}
-            <a href="#" class="btn btn-outline-secondary btn-lg disabled">{{question.points}} </a>
+            <p class="mb-0 pink_disabled">{{question.points}}</p>
             {% else %} 
-            <a href="/question/{{question.id}}/{{team_id}}" class="btn btn-outline-secondary btn-lg">{{question.points}}</a><br>
+            <a href="/question/{{question.id}}/{{team_id}}" class="pink_text">{{question.points}}</a><br>
             {#{% for team in question.team_set.all %}{{team}} {% endfor %}#}
             {% endif %}
           </td>
@@ -38,18 +64,7 @@
   </div>
 </div>
 
-<div class="card mt-4">
-  <div class="card-header">
-    <h4 class="card-title">Score</h4>
-  </div>
-  
-  <ul class="list-group list-group-flush">
-    {% for team in teams %}
-    <li class="list-group-item">{{team.0}} : {{team.1}}</li>
-    {% endfor %}
-  </ul>
-</div>
-<a class="btn btn-secondary" href="/admin">Settings</a>
+<a class="btn btn-secondary mt-4" href="/admin">Settings</a>
 
 
 

@@ -1,39 +1,51 @@
 {% extends 'jeopardy/base.html' %}
 
 {% block content %}
-<div id="carouselId" class="carousel slide">
-    <br><br><br>
-    <div class="carousel-inner">
-        
-        <div class="carousel-item active">
-            <div class="card mt-4">
-                <div class="card-header">
-                    <h1>{{question.topic}} for {{ question.points }} points<h1>
-                </div>
-                <div class="card-body">
-                    <h4 class="card-text">{{question.question}}</h4>
-                    <button class="btn btn-success" type="button" data-bs-target="#carouselId" data-bs-slide="next">
-                    Check
-                </button>
+<form method = "post" action="/question/{{url.0}}/{{url.1}}">
+    <div id="carouselId" class="carousel slide">
+        <br><br><br>
+        <div class="carousel-inner">
+            
+            <div class="carousel-item active">
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h1>{{question.topic}} for {{ question.points }} points<h1>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-text">{{question.question}}</h4>
+                        <button class="btn btn-success" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+                        Check
+                    </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card mt-4">
-                <div class="card-header">
-                    <h1>{{question.question}}<h1>
+            <div class="carousel-item">
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h1>{{question.question}}<h1>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-text">Correct Answer: {{question.answer}}</h4>
+                        <br>
+                        {{profileForm.as_p}}
+                        {% csrf_token %}
+                        <input class="btn btn-success" type="submit" value="Correct">
+                        <input class="btn btn-danger" type="submit" value="Incorrect"><br>
+                    </div>
+                    
                 </div>
-                <div class="card-body">
-                    <h4 class="card-text">Correct Answer: {{question.answer}}</h4>
-                    <br>
-                    <a class="btn btn-success" href="{% url 'main' %}">Correct</a> 
-                    <a class="btn btn-danger" href="{% url 'main' %}">Incorrect</a><br>
-                </div>
-                
             </div>
         </div>
     </div>
-</div>
+    <div class="card mt-4">
+        <div class="card-header">
+            Form info
+        </div>
+        <div class="card-body">
+            {{teamForm.as_p}}
+        </div>
+    </div>
+</form> 
 
 
 {%endblock%}

@@ -7,10 +7,27 @@
     background-color: #F1B2D3;
 }
 
-.pink1 {
+.pink_bacground {
     background-color: #F1B2D3, 
 }
 
+.pink1 {
+    background-color: #EC008C
+}
+
+.pink_text {
+    color: #EC008C
+}
+
+.pink_disabled {
+    color: #7a2257
+}
+
+.link:hover {
+    color: #FFFFFF;
+    background-color: #EC008C;
+  }
+
 .pink2 {
-    background-color: #F00000
+    background-color: #feabfd; 
 }
