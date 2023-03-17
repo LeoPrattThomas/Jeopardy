@@ -25,7 +25,7 @@ git clone https://github.com/LeoPrattThomas/Jeopardy.git
 ```
 python3 manage.py runserver
 ```
-### R imlimentation
+### R implementation
 ```
 python3 manage.py shell
 import R.code.import_all
