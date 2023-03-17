@@ -6,7 +6,7 @@ yes i wrote all of this just for the game using:
     Python
     SQL
     Django
-Also if Tea calls me incompetent (she's probably right) but i wrote this so i big brain sometimes
+I did write all of this so i am not completely incompetent.
 
 but if you are reading this just for fun or i showed it to you and you are a part of UChicago Lab School and not a part of SDA JOIN!!! We do cool things. 
 And yet somehow I'm stuck with writing code at 1:47 am in the morning. I need friends.
