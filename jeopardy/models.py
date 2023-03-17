@@ -17,6 +17,7 @@ class Question(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     points = models.ForeignKey(Point, on_delete=models.CASCADE)
     question = models.TextField(max_length=255)
+    color = ColorField(default='#EC008C')
     answer = models.TextField(max_length=255)
     def __str__(self):
         return f"{ str(self.topic) } for { str(self.points) } points : {self.question}" 

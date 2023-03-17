@@ -52,7 +52,7 @@
             {% if question.incorect.all.count != 0 or question.correct.all.count != 0 %}
             <p class="mb-0 pink_disabled">{{question.points}}</p>
             {% else %} 
-            <a href="/question/{{question.id}}/{{team_id}}" class="pink_text">{{question.points}}</a><br>
+            <a href="/question/{{question.id}}/{{team_id}}" style = "color: {{question.color}}">{{question.points}}</a><br>
             {#{% for team in question.team_set.all %}{{team}} {% endfor %}#}
             {% endif %}
           </td>

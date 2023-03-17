@@ -1,16 +1,17 @@
 import subprocess
 import os
+import sys
 
 #run r script
 path = "R/code/Transform.R"
-
-with open(path,'w') as f: f.write('#!/bin/sh\nexit 0')
-
-assert os.path.isfile(path)
 os.chmod(path, 0b111101101)
-subprocess.call(path)
+res = subprocess.call(f"Rscript {path}", shell=True)
 
-#subprocess.call ("/usr/bin/Rscript --vanilla R/code/Transform.R", shell=True)
+
+#Import into database
 import R.code.import_topic
 import R.code.import_points
 import R.code.import_qustions
+
+#exit pythone
+sys.exit()
