@@ -20,12 +20,12 @@ class Question(models.Model):
     color = ColorField(default='#EC008C')
     answer = models.TextField(max_length=255)
     def __str__(self):
-        return f"{ str(self.topic) } for { str(self.points) } points : {self.question}" 
+        return f"{ str(self.topic) } for { str(self.points) } points"# : {self.question}" 
 
 class Team(models.Model):
     teamName = models.CharField(max_length=50)
     correct = models.ManyToManyField(Question,blank=True, related_name="correct")
-    incorrect = models.ManyToManyField(Question,blank=True, related_name="incorect")
+    incorrect = models.ManyToManyField(Question,blank=True, related_name="incorrect")
     def __str__(self):
         return self.teamName
     color = ColorField(default='#FF0000')

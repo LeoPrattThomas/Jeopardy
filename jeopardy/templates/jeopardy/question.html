@@ -43,6 +43,19 @@
         </div>
         <div class="card-body">
             {{teamForm.as_p}}
+            {% regroup field by attrs.cat_name as list %}
+
+            <ul>
+                {% for el in list %}
+                    <li>{{el.grouper}}
+                    <ul>
+                        {% for e in el.list %}
+                            {{e}} <br />
+                        {% endfor %}
+                    </ul>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </form> 

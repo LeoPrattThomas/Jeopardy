@@ -2,7 +2,7 @@ from .models import *
 from .forms import *
 import random
 from django.http import HttpResponse
-from itertools import chain
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect, get_object_or_404
 
     
@@ -64,27 +64,31 @@ def question(request, question_id, team_id):
     #edit user form
     team_obj = get_object_or_404(Team, id = team_id) # fetch the object related to passed id
     
-    teamForm = TeamForm(request.POST or None, initial = {team.correct.all()}, instance = team_obj, question_id = question_id)  # pass the object as instance in form
+    teamForm = TeamForm(request.POST or None, instance = team_obj, question_id = question_id)  # pass the object as instance in form
     if teamForm.is_valid():# save the data from the form
-        
-
-        """correct = teamForm.cleaned_data.get("correct")
-        full_correct = team.correct.all()
-
-        print("Current data: %s" % list(chain(full_correct,correct)))
-        teamForm.cleaned_data["correct"] = list(chain(team.incorrect,correct))"""
-
         if teamForm.has_changed():
             print("The following fields changed: %s" % ", ".join(teamForm.changed_data))
 
         teamForm.save()
 
         #chanage active tean
-        while Team.objects.get == None:
-            team_id =+ 1
-            if team_id < 99:
-                team_id = 0
-        return redirect(f"/board/{ team.id }")
+        team_id = team.id
+        team_id += 1
+
+        while True:
+            try:
+                team = Team.objects.get(id = team_id) 
+                break
+            except ObjectDoesNotExist:   
+                team_id =+ 1
+                if team_id > 99:
+                    team_id = 0
+                print(team_id)
+                
+            
+    
+        print(Team.objects.get(id = team_id))
+        return redirect(f"/board/{ team_id }")
     context["teamForm"] = teamForm # add form dictionary to context
 
     return render(request, 'jeopardy/question.html', context)
