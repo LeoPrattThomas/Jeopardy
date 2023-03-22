@@ -78,16 +78,17 @@ def question(request, question_id, team_id):
 
         teamForm.save()
 
-        #chanage active tean
+        #chanage active team
+        return redirect(f"/next/{ team_id }")
         team_id = next_team(team.id)
         
         print(Team.objects.get(id = team_id))
-        return redirect(f"/board/{ team_id }")
+        
     context["teamForm"] = teamForm # add form dictionary to context
 
     return render(request, 'jeopardy/question.html', context)
 
-def next_team(team_id):
+def next_team(request, team_id):
     team_id += 1
     while True:
         try:
@@ -97,7 +98,7 @@ def next_team(team_id):
             team_id =+ 1
             if team_id > 99:
                 team_id = 0
-    return team_id
+    return redirect(f"/board/{ team_id }")
         
 
 def edit_team(request,team_id):

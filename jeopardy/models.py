@@ -21,8 +21,8 @@ class Point(models.Model):
         return str(self.points)
 
 class Question(models.Model):
-    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    points = models.ForeignKey(Point, on_delete=models.CASCADE)
+    topic = models.ForeignKey(Topic, on_delete=models.PROTECT)
+    points = models.ForeignKey(Point, on_delete=models.PROTECT)
     question = models.TextField(max_length=255)
     color = ColorField(default='#EC008C')
     answer = models.TextField(max_length=255)
@@ -32,6 +32,7 @@ class Question(models.Model):
         return f"{ str(self.topic) } for { str(self.points) } points"# : {self.question}" 
 
 class Team(models.Model):
+    disabled = models.BooleanField(default=False)
     teamName = models.CharField(max_length=50)
     correct = models.ManyToManyField(Question,blank=True, related_name="correct")
     incorrect = models.ManyToManyField(Question,blank=True, related_name="incorrect")

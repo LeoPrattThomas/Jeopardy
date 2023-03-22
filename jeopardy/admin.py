@@ -10,6 +10,6 @@ from .models import *
 
 # Register your models here.
 admin.site.register(Topic)
+admin.site.register(Point)
 admin.site.register(Question)
 admin.site.register(Team)
-admin.site.register(Point)

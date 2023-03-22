@@ -29,7 +29,8 @@
                         <br>
                         {% csrf_token %}
 
-                        {% for option in teamForm.correct %}{% if option.choice_label == question.str %}
+                        {% for option in teamForm.correct %}
+                        {% if option.choice_label == question.str %}
                         <div class="form-check">
                             {{ option.tag }}
                             <label class="form-check-label" for="flexCheckDefault">
@@ -37,7 +38,16 @@
                             </label> 
                         </div>
                         {{option.errors}}
-                        {% endif %}{% endfor %}
+                        {% else %}
+                        <div class="form-check visually-hidden">
+                            {{ option.tag }}
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Correct hidden
+                            </label> 
+                        </div>
+                        {% endif %}
+                        
+                        {% endfor %}
 
                         {% for option in teamForm.incorrect %}{% if option.choice_label == question.str %}
                         <div class="form-check">
@@ -47,7 +57,16 @@
                             </label> 
                         </div>
                         {{option.errors}}
-                        {% endif %}{% endfor %}
+                        {% else %}
+                        <div class="form-check visually-hidden">
+                            {{ option.tag }}
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Incorrect hidden
+                            </label> 
+                        </div>
+                        {{option.errors}}
+                        {% endif %}
+                        {% endfor %}
                         {#{% endcomment %}#}
                         <input class="btn btn-primary" type="submit" value="Next Question"><br>
                     </div>

@@ -1,7 +1,7 @@
 {% extends 'jeopardy/base.html' %}
 
 {% block content %}
-<h1 class = "text-center mt-3">Jeopardy!!</h1>
+<h1 class = "text-center mt-3">Jeopardy!!!</h1>
 
 <!--team part-->
 <div class="row justify-content-center align-items-center g-2">
@@ -10,7 +10,7 @@
   <div class="col">
     <div class="card mt-3" style = "width: 18rem;">
       <div class="card-body">
-        <h4 class="card-title text-center" style = "color: {{activeTeam.color}};">{{activeTeam}} Turn </h4>
+        <h4 class="card-title text-center" style = "color: {{activeTeam.color}};">{{activeTeam}} turn </h4>
       </div>
     </div>
   </div>
@@ -24,7 +24,8 @@
       
       <ul class="list-group list-group-flush">
         {% for team in teams %}
-        <li class="list-group-item">{{team.0}} : {{team.1}}</li>
+        
+        <li class="list-group-item" style = "color: {{team.0.color}};">{{team.0.id}}: {{team.0}} : {{team.1}}</li>
         {% endfor %}
       </ul>
     </div>
@@ -66,6 +67,7 @@
 
 <a class="btn btn-secondary mt-4" href="/admin">Settings</a>
 <a class="btn btn-secondary mt-4" href="/editScore/{{activeTeam.id}}">Edit {{activeTeam.name}}</a>
+<a class="btn btn-secondary mt-4" href="/next/{{activeTeam.id}}">Skip Turn</a>
 
 
 
