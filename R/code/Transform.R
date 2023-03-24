@@ -18,29 +18,29 @@ print("Answer Imported: R/datasets/Jeopardy.xlsx")
 color <- read_excel("R/datasets/Jeopardy.xlsx",sheet = "hex")
 print("color Imported: R/datasets/Jeopardy.xlsx")
 
-#make tible of qustion tidy
+#make tible of question tidy
 question_tidy <- question %>% 
   pivot_longer(cols = c("Short answer","Fill in the blank","Factual questions", "Disability/accessibility knowledge"),  # nolint
                names_to = "Topic",
                values_to = "Question") %>% 
   rename(Points = QUESTIONS)#; View(question_tidy)
 
-#make tible of answer tidy
-answer_tidy <- answer %>% 
-  pivot_longer(cols = c("Short answer","Fill in the blank","Factual questions", "Disability/accessibility knowledge"),  # nolint: line_length_linter.
+#make tibble of answer tidy
+answer_tidy <- answer %>%
+  pivot_longer(cols = c("Short answer", "Fill in the blank", "Factual questions", "Disability/accessibility knowledge"),  # nolint: line_length_linter.
                names_to = "Topic",
-               values_to = "Answer") %>% 
+               values_to = "Answer") %>%
   rename(Points = ANSWERS)#; View(answer_tidy)
 
-color_tidy <- color %>% 
+color_tidy <- color %>%
   pivot_longer(cols = c("Short answer","Fill in the blank","Factual questions", "Disability/accessibility knowledge"),  # nolint
                names_to = "Topic",
-               values_to = "Color") %>% 
+               values_to = "Color") %>%
   rename(Points = HEX)#; View(color_tidy)
 
 #combine two tables to make it more superior
 jeopardy <- merge(question_tidy, answer_tidy, by = c("Topic", "Points"))
-jeopardy <- merge(jeopardy,color_tidy, by = c("Topic", "Points"))#; View(jeopardy)
+jeopardy <- merge(jeopardy,color_tidy, by = c("Topic", "Points"))
 
 #get each topic and point value
 topic <- tibble(unique(jeopardy$Topic)) %>% 
