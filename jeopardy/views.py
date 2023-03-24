@@ -93,6 +93,8 @@ def next_team(request, team_id):
     while True:
         try:
             team = Team.objects.get(id = team_id) 
+            if team.disabled:
+                raise ObjectDoesNotExist
             break
         except ObjectDoesNotExist:   
             team_id =+ 1
