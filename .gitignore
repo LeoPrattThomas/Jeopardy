@@ -17,6 +17,7 @@ assets
 
 #ignore xlsx
 *~
+~$Jeopardy.xlsx
 
 
 # Visual Studio Code # 
