@@ -24,11 +24,10 @@
       
       <ul class="list-group list-group-flush">
         {% for team in teams %}
-        {% if team.disabled %}
-        <li class="list-group-item pink_disabled">
-          {{team.0.id}}: {{team.0}} : {{team.1}}{% if team.0.id == activeTeam.id %}<c style = "color: black;"> <-- </c>{% endif %}</li>
+        {% if team.0.disabled %}
+        <li class="list-group-item disabled"><del>{{team.0.id}}: {{team.0}}</del></li>
         {% else %}
-        <li class="list-group-item" style = "color: {{team.0.color}};">{{team.0.id}}: {{team.0}} : {{team.1}}{% if team.0.id == activeTeam.id %} <c style = "color: black;"> <-- </c>{% endif %}</li>
+        <li class="list-group-item" style = "color: {{team.0.color}};"> {{team.0.id}}: {{team.0}} : {{team.1}}{% if team.0.id == activeTeam.id %} <c style = "color: black;"> <-- </c>{% endif %}</li>
         {% endif %}
 
         {% endfor %}

@@ -1,9 +1,13 @@
 "","Topic","Points","Question","Answer","Color"
 "1","Disability/accessibility knowledge",100,"Who are the high school learning coordinators","Ms. Doto, Ms. Hicks, Ms. Scott","#ff00ff"
 "2","Disability/accessibility knowledge",200,"____, ____ and ____ are examples of academic accommodations","Exteneded time, large print, typing, seperate testing, etc","#ff00ff"
-"3","Disability/accessibility knowledge",300,"What percentage of people have a learning disability (accoridng to the organization Eye-to-Eye)?","20% (1 in 5)","#ff00ff"
+"3","Disability/accessibility knowledge",300,"What percentage of people have a learning disability (accoridng to the organization Eye-to-Eye)?","20% (1 in 5) of people","#ff00ff"
 "4","Disability/accessibility knowledge",400,"A person with a disability is a person who has a physical or mental impairment that substantially limits one or more major life activity. This definition comes from what law?","Americans with Disabilities Act","#ff00ff"
-"5","Disability/accessibility knowledge",500,"Name a piece of legislation that disability activist Judy Heumann helped pass","Americans with Disabilities Act, Section 504, Individuals with Disabilities Education Act, Rehabilitation Act, United Nations Convention on the Rights of Persons with Disabilities","#ff00ff"
+"5","Disability/accessibility knowledge",500,"Name a piece of legislation that disability activist Judy Heumann helped pass","Americans with Disabilities Act, 
+Section 504, 
+Individuals with Disabilities Education Act,
+Rehabilitation Act, 
+United Nations Convention on the Rights of Persons with Disabilities","#ff00ff"
 "6","Factual questions",100,"Who was the leader the National German Workers Party?","Adolf Hitler","#ec008c"
 "7","Factual questions",200,"How many Jews were killed by the Nazi regime and its collaborators?","Six million","#ec008c"
 "8","Factual questions",300,"In 1934, what's something that Jewish people could be excluded from?","owning land, having national health insurance, getting Law degrees","#ec008c"
@@ -15,7 +19,7 @@
 ","Three","#ff00ff"
 "14","Fill in the blank",400,"Operation T4 began in ____ year.","1939.0","#ff00ff"
 "15","Fill in the blank",500,"Genocide is ____.","A world-wide operation to kill people based on their race, nationality or religion.","#ff00ff"
-"16","Short answer",100,"What's something Jewish people were not allowed to do?","own businesses, register wealth or property, practice medicine, attend non-Jewish schools","#ec008c"
+"16","Short answer",100,"What's something Jewish people were not allowed to do?","Own businesses, register wealth or property, practice medicine, attend non-Jewish schools","#ec008c"
 "17","Short answer",200,"Name a killing mechanism that used in Operation T4.","Poison gas, gas chambers, lethal injections","#ec008c"
 "18","Short answer",300,"In what year did Chelmno, the first “death camp,"" open?","1941.0","#ec008c"
 "19","Short answer",400,"What program killed about 70,000 Austrian and German disabled people?","Mercy Death program","#ec008c"
