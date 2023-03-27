@@ -97,10 +97,10 @@ def next_team(request, team_id):
                 raise ObjectDoesNotExist
             break
         except ObjectDoesNotExist:   
-            team_id =+ 1
+            team_id += 1
             if team_id > 99:
                 team_id = 0
-    return redirect(f"/board/{ team_id }")
+    return redirect(f"/board/{ team.id }")
         
 
 def edit_team(request,team_id):

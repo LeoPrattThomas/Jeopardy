@@ -16,8 +16,6 @@ assets
 *.DS_Store
 
 #ignore xlsx
-*~
-~$Jeopardy.xlsx
 
 
 # Visual Studio Code # 
