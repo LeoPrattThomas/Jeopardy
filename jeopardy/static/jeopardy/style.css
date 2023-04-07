@@ -2,9 +2,10 @@
     background-color:blue;
 }
 .body {
-    background: url("Top.png") top no-repeat, url("Bottom.png") bottom no-repeat;
+    /*background: url("Top.png") top no-repeat, url("Bottom.png") bottom no-repeat;
     background-size: 100%, 100%;
-    background-color: #F1B2D3;
+    background-color: #F1B2D3;*/
+    background-color: lightblue;
 }
 
 .pink_bacground {
